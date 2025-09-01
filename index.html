@@ -3,55 +3,28 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Don't Starve Together — Железный план выживания</title>
+<title>DST — Железный план (старый)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 <style>
-  /* ========= ТЕМЫ ========= */
   :root{
     --radius:14px;
     --shadow: 0 1px 0 rgba(0,0,0,.20), inset 0 0 0 1px rgba(255,255,255,.02);
     --speed: .35s;
   }
   [data-theme="dark"]{
-    --bg:#0b1220;
-    --surface:#0f172a;
-    --surface-2:#0c1424;
-    --ink:#e5e7eb;
-    --muted:#9aa8bd;
-    --line:#1f2a3d;
-
-    --winter:#4f7ccf;
-    --spring:#2ea97b;
-    --summer:#b98c3a;
-
-    --brand1:#0b1220;
-    --brand2:#0f172a;
-
-    --link:#9cc2ff;
-    --link-hover:#c3d7ff;
+    --bg:#0b1220; --surface:#0f172a; --surface-2:#0c1424; --ink:#e5e7eb; --muted:#9aa8bd; --line:#1f2a3d;
+    --winter:#4f7ccf; --spring:#2ea97b; --summer:#b98c3a;
+    --brand1:#0b1220; --brand2:#0f172a;
+    --link:#9cc2ff; --link-hover:#c3d7ff;
   }
   [data-theme="light"]{
-    --bg:#f7f9fc;
-    --surface:#ffffff;
-    --surface-2:#f2f5fb;
-    --ink:#0f172a;
-    --muted:#64748b;
-    --line:#e2e8f0;
-
-    --winter:#3b82f6;
-    --spring:#22c55e;
-    --summer:#f59e0b;
-
-    --brand1:#e6eefc;
-    --brand2:#ffffff;
-
-    --link:#2563eb;
-    --link-hover:#1d4ed8;
+    --bg:#f7f9fc; --surface:#ffffff; --surface-2:#f2f5fb; --ink:#0f172a; --muted:#64748b; --line:#e2e8f0;
+    --winter:#3b82f6; --spring:#22c55e; --summer:#f59e0b;
+    --brand1:#e6eefc; --brand2:#ffffff;
+    --link:#2563eb; --link-hover:#1d4ed8;
   }
-
-  /* ========= БАЗА ========= */
   *{box-sizing:border-box}
   html,body{margin:0;padding:0;background:var(--bg);color:var(--ink)}
   body{
@@ -60,15 +33,11 @@
     -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
     transition: background-color var(--speed) ease, color var(--speed) ease;
   }
+  body.modal-open{overflow:hidden}
   .wrap{max-width:1120px;margin:0 auto;padding:0 22px 80px}
-
-  /* ========= ХЕДЕР ========= */
   header.hero{
     background:linear-gradient(120deg,var(--brand1),var(--brand2));
-    color:var(--ink);
-    padding:26px 0 20px;
-    border-bottom:1px solid var(--line);
-    transition: background var(--speed) ease;
+    color:var(--ink); padding:26px 0 20px; border-bottom:1px solid var(--line);
   }
   .hero .wrap{padding-bottom:0}
   .brand{font-weight:800; letter-spacing:.2px; font-size:13px; opacity:.95}
@@ -76,146 +45,87 @@
   .team{opacity:.95; font-weight:600}
   .roles{margin-top:8px; display:flex; flex-wrap:wrap; gap:8px}
   .role{
-    display:inline-flex; align-items:center; gap:6px; padding:6px 10px;
-    border-radius:999px; background:var(--surface); border:1px solid var(--line);
-    font-size:12.5px; font-weight:700; color:var(--ink); box-shadow:var(--shadow);
-    cursor:pointer; transform: translateY(0); transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+    display:inline-flex; align-items:center; gap:6px; padding:6px 10px; border-radius:999px;
+    background:var(--surface); border:1px solid var(--line); font-size:12.5px; font-weight:700;
+    box-shadow:var(--shadow); cursor:pointer; transform: translateY(0);
+    transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
   }
   .role:hover{ transform: translateY(-2px); box-shadow:0 8px 24px rgba(0,0,0,.18)}
   .role i{font-style:normal; opacity:.9}
-
-  /* ========= НАВИГАЦИЯ ========= */
   nav.top{
-    position:sticky; top:0; z-index:60;
-    background:rgba(11,18,32,.95);
-    border-bottom:1px solid var(--line);
-    backdrop-filter: blur(6px);
-    transition: background var(--speed) ease, color var(--speed) ease;
+    position:sticky; top:0; z-index:70; /* ниже оверлея */
+    background:rgba(11,18,32,.95); border-bottom:1px solid var(--line); backdrop-filter: blur(6px);
   }
   [data-theme="light"] nav.top{ background:rgba(255,255,255,.85) }
   nav.top .bar{display:flex; gap:10px; align-items:center; padding:10px 0}
   .pill{
-    display:inline-flex; align-items:center; gap:8px;
-    padding:7px 12px; border-radius:999px; border:1px solid var(--line);
-    background:var(--surface); color:var(--ink);
+    display:inline-flex; align-items:center; gap:8px; padding:7px 12px; border-radius:999px;
+    border:1px solid var(--line); background:var(--surface); color:var(--ink);
     font-weight:600; font-size:13.5px; text-decoration:none; box-shadow:var(--shadow);
     transition: transform .2s ease, background .2s ease;
   }
   .pill:hover{ transform: translateY(-1px) }
   .pill .dot{width:8px;height:8px;border-radius:50%}
   .w{background:var(--winter)} .s{background:var(--spring)} .u{background:var(--summer)}
-
   .spacer{flex:1}
   .theme-btn{
-    display:inline-flex; align-items:center; gap:8px;
-    padding:7px 12px; border-radius:999px; border:1px solid var(--line);
-    background:var(--surface); color:var(--ink); font-weight:700; cursor:pointer;
-    box-shadow:var(--shadow);
+    display:inline-flex; align-items:center; gap:8px; padding:7px 12px; border-radius:999px;
+    border:1px solid var(--line); background:var(--surface); color:var(--ink); font-weight:700; cursor:pointer; box-shadow:var(--shadow);
   }
   .theme-btn .icon{display:inline-block; width:16px; height:16px; position:relative}
-  .sun, .moon{
-    position:absolute; inset:0; display:block; transition: transform .5s ease, opacity .35s ease;
-  }
+  .sun, .moon{position:absolute; inset:0; display:block; transition: transform .5s ease, opacity .35s ease}
   [data-theme="dark"] .sun{ opacity:0; transform: rotate(-90deg) scale(.6)}
   [data-theme="dark"] .moon{ opacity:1; transform: rotate(0) scale(1)}
   [data-theme="light"] .sun{ opacity:1; transform: rotate(0) scale(1)}
   [data-theme="light"] .moon{ opacity:0; transform: rotate(90deg) scale(.6)}
-
-  /* ========= СЕКЦИИ ========= */
   section{margin:28px 0}
   h2{font-size:22px; font-weight:800; margin:0 0 10px}
   .lead{color:var(--muted); font-weight:600; margin:6px 0 10px}
   .card{
-    background:var(--surface);
-    border:1px solid var(--line);
-    border-radius:var(--radius); padding:14px;
-    box-shadow:var(--shadow);
-    opacity:0; transform: translateY(12px); transition: opacity .6s ease, transform .6s ease, background var(--speed) ease;
+    background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:14px;
+    box-shadow:var(--shadow); opacity:0; transform: translateY(12px); transition: opacity .6s ease, transform .6s ease, background var(--speed) ease;
   }
   .card.show{opacity:1; transform: translateY(0)}
   ul{margin:8px 0 8px; padding-left:18px}
   li{margin:4px 0}
-
   .season{border-left:8px solid var(--line); padding-left:10px}
-  .season.winter{border-color:var(--winter)}
-  .season.spring{border-color:var(--spring)}
-  .season.summer{border-color:var(--summer)}
-
-  .players-bar{
-    display:flex; flex-wrap:wrap; gap:8px; margin:8px 0 2px
-  }
-
-  /* ========= ТАБЛИЦЫ ========= */
+  .season.winter{border-color:var(--winter)} .season.spring{border-color:var(--spring)} .season.summer{border-color:var(--summer)}
   table.plan{width:100%; border-collapse:separate; border-spacing:0; margin:10px 0 4px}
   .plan th,.plan td{border:1px solid var(--line); padding:10px; vertical-align:top}
   .plan th{
     background:color-mix(in oklab, var(--surface) 85%, #000 15%);
-    color:var(--ink); text-align:left; font-size:14px; font-weight:800;
-    position:sticky; top:64px; z-index:5;
+    color:var(--ink); text-align:left; font-size:14px; font-weight:800; position:sticky; top:64px; z-index:5;
   }
   [data-theme="light"] .plan th{ background:color-mix(in oklab, var(--surface) 88%, #000 4%) }
   .plan td{font-size:14px; background:var(--surface)}
-  .plan tbody tr:nth-child(odd) td{background:var(--surface-2)} /* зебра */
+  .plan tbody tr:nth-child(odd) td{background:var(--surface-2)}
   .range{font-weight:800}
-  .th-btn{
-    background:none; border:none; color:inherit; font:inherit; padding:0; cursor:pointer;
-    text-decoration:underline; text-underline-offset:2px;
-  }
-
+  .th-btn{background:none; border:none; color:inherit; font:inherit; padding:0; cursor:pointer; text-decoration:underline; text-underline-offset:2px}
   .kpi{display:flex;flex-wrap:wrap;gap:8px;padding:0;list-style:none; margin:8px 0 2px}
-  .kpi li{
-    border:1px dashed var(--line); background:var(--surface-2);
-    border-radius:10px; padding:6px 10px; font-weight:600; font-size:13.5px;
-  }
-
-  /* ========= МОДАЛКА И ПРОСМОТР ИГРОКА ========= */
+  .kpi li{border:1px dashed var(--line); background:var(--surface-2); border-radius:10px; padding:6px 10px; font-weight:600; font-size:13.5px}
   .overlay{
-    position:fixed; inset:0; background:rgba(0,0,0,.4);
-    opacity:0; pointer-events:none; transition: opacity .35s ease;
+    position:fixed; inset:0; background:rgba(0,0,0,.5);
+    opacity:0; pointer-events:none; transition: opacity .35s ease; z-index:9999; /* выше навигации */
   }
   .overlay.show{opacity:1; pointer-events:auto}
   .modal{
     position:fixed; left:50%; top:50%; transform: translate(-50%,-46%) scale(.98);
-    width:min(800px, calc(100% - 32px));
-    background:var(--surface); border:1px solid var(--line); border-radius:var(--radius);
-    box-shadow:0 24px 64px rgba(0,0,0,.35);
-    opacity:0; pointer-events:none;
+    width:min(800px, calc(100% - 32px)); background:var(--surface); border:1px solid var(--line);
+    border-radius:var(--radius); box-shadow:0 24px 64px rgba(0,0,0,.35); opacity:0; pointer-events:none;
     transition: opacity .35s ease, transform .35s ease, background var(--speed) ease;
   }
   .overlay.show .modal{ opacity:1; pointer-events:auto; transform: translate(-50%,-50%) scale(1) }
-  .modal header{
-    display:flex; align-items:center; justify-content:space-between; gap:12px;
-    padding:12px 14px; border-bottom:1px solid var(--line);
-  }
+  .modal header{display:flex; align-items:center; justify-content:space-between; gap:12px; padding:12px 14px; border-bottom:1px solid var(--line)}
   .player-title{font-weight:800}
-  .close-btn{
-    border:1px solid var(--line); background:var(--surface); color:var(--ink);
-    border-radius:10px; padding:6px 10px; cursor:pointer;
-  }
+  .close-btn{border:1px solid var(--line); background:var(--surface); color:var(--ink); border-radius:10px; padding:6px 10px; cursor:pointer}
   .modal .body{padding:12px 14px; max-height:70vh; overflow:auto}
   .task-block{border-left:6px solid var(--line); padding-left:10px; margin:10px 0}
-  .task-block.winter{border-color:var(--winter)}
-  .task-block.spring{border-color:var(--spring)}
-  .task-block.summer{border-color:var(--summer)}
-  .tasks{margin:6px 0 12px}
-  .tasks li{margin:6px 0}
-
-  /* ========= ССЫЛКИ И ФОКУС ========= */
+  .task-block.winter{border-color:var(--winter)} .task-block.spring{border-color:var(--spring)} .task-block.summer{border-color:var(--summer)}
+  .tasks{margin:6px 0 12px} .tasks li{margin:6px 0}
   a{color:var(--link)} a:hover{color:var(--link-hover)}
   :focus-visible{outline:2px solid color-mix(in oklab, var(--winter) 70%, #fff 30%); outline-offset:2px}
-
-  /* ========= МОБИЛКИ ========= */
-  @media (max-width:980px){
-    .plan{display:block; overflow:auto}
-    .plan th{top:58px}
-  }
-
-  /* ========= REDUCE MOTION ========= */
-  @media (prefers-reduced-motion: reduce){
-    .card{transition:none}
-    .modal{transition:none}
-    .theme-btn .sun,.theme-btn .moon{transition:none}
-  }
+  @media (max-width:980px){ .plan{display:block; overflow:auto} .plan th{top:58px} }
+  @media (prefers-reduced-motion: reduce){ .card,.modal,.sun,.moon{transition:none} }
 </style>
 </head>
 <body>
@@ -223,8 +133,7 @@
 <header class="hero">
   <div class="wrap">
     <div class="brand">Don't Starve Together</div>
-    <h1>Железный план выживания: Зима → Весна → Лето</h1>
-
+    <h1>Железный план выживания: Зима → Весна → Лето (старый)</h1>
     <div class="team">Команда:</div>
     <div class="roles players-bar">
       <button class="role player" data-player="wigfrid">🛡️ <i>Вигфрид</i> — CAStraydog</button>
@@ -245,25 +154,19 @@
     <div class="spacer"></div>
     <button id="themeToggle" class="theme-btn" aria-label="Переключить тему">
       <span class="icon">
-        <svg class="sun" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-          <path d="M6.76 4.84l-1.8-1.79L3.17 4.84l1.79 1.79 1.8-1.79zm10.48 0l1.8-1.79 1.79 1.79-1.79 1.79-1.8-1.79zM12 4V1h-0v3h0zm0 19v-3h0v3h0zM4 12H1v0h3v0zm19 0h-3v0h3v0zM6.76 19.16l-1.8 1.79-1.79-1.79 1.79-1.79 1.8 1.79zm10.48 0l1.8 1.79 1.79-1.79-1.79-1.79-1.8 1.79zM12 8a4 4 0 100 8 4 4 0 000-8z"/>
-        </svg>
-        <svg class="moon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-          <path d="M21 12.79A9 9 0 1111.21 3a7 7 0 109.79 9.79z"/>
-        </svg>
-      </span>
-      Тема
+        <svg class="sun" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.76 4.84l-1.8-1.79L3.17 4.84l1.79 1.79 1.8-1.79zm10.48 0l1.8-1.79 1.79 1.79-1.79 1.79-1.8-1.79zM12 4V1h-0v3h0zm0 19v-3h0v3h0zM4 12H1v0h3v0zm19 0h-3v0h3v0zM6.76 19.16l-1.8 1.79-1.79-1.79 1.79-1.79 1.8 1.79zm10.48 0l1.8 1.79 1.79-1.79-1.79-1.79-1.8 1.79zM12 8a4 4 0 100 8 4 4 0 000-8z"/></svg>
+        <svg class="moon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 12.79A9 9 0 1111.21 3a7 7 0 109.79 9.79z"/></svg>
+      </span> Тема
     </button>
   </div>
 </nav>
 
 <main class="wrap">
-
   <section id="base">
     <h2>База на старте зимы</h2>
     <div class="card reveal">
       <ul>
-        - Огород; запас семян
+        <li>Огород (семена в запасе), немного травы/веток/ягод</li>
         <li>Зимний Коалефант (туша/загон)</li>
         <li>Ферма пауков (2–3 гнезда 2–3 уровня)</li>
         <li>Пасека (3–4 улья)</li>
@@ -284,10 +187,10 @@
     </div>
   </section>
 
+  <!-- Зима/Весна/Лето — как в предыдущей версии (старый план) -->
   <section id="winter" class="season winter">
     <h2>❄️ ЗИМА (Дни 21–35)</h2>
     <div class="lead"><strong>Приоритет: тепло и еда.</strong> Цели: Дирклопс, 100+ льда, 40+ мяса.</div>
-
     <div class="card reveal">
       <table class="plan">
         <thead>
@@ -335,58 +238,57 @@
           </tr>
         </tbody>
       </table>
-      <div class="lead">На босса: 15–20 Пирогов (1 яйцо + 1 мясо + овощ/гриб + наполнитель) — лучший хил.</div>
+      <div class="lead">На босса: 15–20 Пирогов — лучший хил.</div>
     </div>
   </section>
 
   <section id="spring" class="season spring">
     <h2>🌧️ ВЕСНА (Дни 36–57)</h2>
     <div class="lead"><strong>Приоритет: дождь и молнии.</strong> Цели: Гусь‑Лось, 3 Молниеотвода, 30+ мёда, 2 Ледомёта.</div>
-
     <div class="card reveal">
       <table class="plan">
         <thead>
           <tr>
             <th>Дни</th>
-            <th><button class="th-btn player" data-player="wigfrid">CAStraydog (Вигфрид)</button></th>
-            <th><button class="th-btn player" data-player="woodie">OxesFlame (Вуди)</button></th>
-            <th><button class="th-btn player" data-player="wendy">Dinamiks (Венди)</button></th>
-            <th><button class="th-btn player" data-player="walter">Shizo (Уолтер)</button></th>
-            <th><button class="th-btn player" data-player="wilson">Komorka (Уилсон)</button></th>
+            <th><button class="th-btn player" data-player="wigfrid">CAStraydog</button></th>
+            <th><button class="th-btn player" data-player="woodie">OxesFlame</button></th>
+            <th><button class="th-btn player" data-player="wendy">Dinamiks</button></th>
+            <th><button class="th-btn player" data-player="walter">Shizo</button></th>
+            <th><button class="th-btn player" data-player="wilson">Komorka</button></th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td class="range"><strong>36–40</strong></td>
-            <td>Охота: находит гнездо Гуся‑Лося (метка), ждёт готовности.</td>
-            <td>Защита: ставит 3 Молниеотвода. Заготавливает 40+ бревен.</td>
-            <td>База: дежурит с Абигейл. Лягушачий дождь — чистка.</td>
-            <td>Дозор: сигналит о лягушках, отводит и кайтит пращой.</td>
-            <td>Огород/пасека: посевы, удобрения. Цель мёда: 30+.</td>
+            <td>Отметить гнездо Гуся‑Лося.</td>
+            <td>Поставить 3 Молниеотвода; 40+ бревен.</td>
+            <td>Дежурство с Абигейл. Лягушачий дождь — чистка.</td>
+            <td>Дозор/кайт лягушек (праща).</td>
+            <td>Огород/пасека. Цель мёда: 30+.</td>
           </tr>
           <tr>
             <td class="range"><strong>41–49</strong></td>
-            <td>Подготовка: 15–20 Пирогов; зачистка мелочи.</td>
-            <td>Ловушки: 20 Зубных ловушек (зубы+верёвка+ветка).</td>
-            <td>Пчёлы: убирает агрессивных, собирает мёд.</td>
-            <td>Болото/пустыня: 20 тростника; шестерни по возможности.</td>
-            <td>Ледомёты: крафт 2 шт. и установка (база/склад и огород/пасека). OFF до лета.</td>
+            <td>15–20 Пирогов; зачистка окрестностей.</td>
+            <td>20 Зубных ловушек.</td>
+            <td>Снять агрессивных пчёл; собрать мёд.</td>
+            <td>20 тростника; шестерни по возможности.</td>
+            <td>Крафт/установка 2 Ледомётов (OFF до лета).</td>
           </tr>
           <tr>
             <td class="range"><strong>50–55</strong></td>
-            <td>Босс: Гусь‑Лось — держит на себе. Цель: 3–5 перьев.</td>
-            <td>Поле боя: ловушки по периметру; расчистка деревьев.</td>
-            <td>Адды: Абигейл стирает выводок, добивка.</td>
-            <td>Прикрытие: праща по детёнышам/боссу.</td>
-            <td>Лут/охрана: сбор перьев/мяса, защита построек.</td>
+            <td>Босс: держит Гуся‑Лося. 3–5 перьев.</td>
+            <td>Ловушки по периметру. Расчистка деревьев.</td>
+            <td>Абигейл — выводок. Добивка.</td>
+            <td>Праща по детёнышам/боссу.</td>
+            <td>Сбор лута, защита построек.</td>
           </tr>
           <tr>
             <td class="range"><strong>56–57</strong></td>
-            <td>Крафт: Роскошный вентилятор.</td>
-            <td>Одежда: зонт/дождевой сет; запас дров/верёвок.</td>
-            <td>Топливо: 60 травы, 40 веток.</td>
-            <td>Антлион: 10+ безделушек (могилы).</td>
-            <td>Склад/кухня: пеммикан/тушёное для пещер.</td>
+            <td>Роскошный вентилятор.</td>
+            <td>Зонт/дождевой сет; дрова/верёвки.</td>
+            <td>60 травы, 40 веток.</td>
+            <td>10+ безделушек (могилы).</td>
+            <td>Пеммикан/тушёное для пещер.</td>
           </tr>
         </tbody>
       </table>
@@ -396,354 +298,182 @@
   <section id="summer" class="season summer">
     <h2>☀️ ЛЕТО (Дни 58–73)</h2>
     <div class="lead"><strong>Приоритет: охлаждение и пожарка.</strong> Цели: умиротворить Антлиона, спасти базу, вывезти ресурсы из пещер.</div>
-
     <div class="card reveal">
       <table class="plan">
         <thead>
           <tr>
             <th>Дни</th>
-            <th><button class="th-btn player" data-player="wigfrid">CAStraydog (Вигфрид)</button></th>
-            <th><button class="th-btn player" data-player="woodie">OxesFlame (Вуди)</button></th>
-            <th><button class="th-btn player" data-player="wendy">Dinamiks (Венди)</button></th>
-            <th><button class="th-btn player" data-player="walter">Shizo (Уолтер)</button></th>
-            <th><button class="th-btn player" data-player="wilson">Komorka (Уилсон)</button></th>
+            <th><button class="th-btn player" data-player="wigfrid">CAStraydog</button></th>
+            <th><button class="th-btn player" data-player="woodie">OxesFlame</button></th>
+            <th><button class="th-btn player" data-player="wendy">Dinamiks</button></th>
+            <th><button class="th-btn player" data-player="walter">Shizo</button></th>
+            <th><button class="th-btn player" data-player="wilson">Komorka</button></th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td class="range"><strong>58–60</strong></td>
-            <td>Охрана: сопровождает Венди в пещеры.</td>
-            <td>Пожарка: включает Ледомёты (Auto), эндотермическая яма, контроль перегрева.</td>
-            <td>Пещеры (фарм): лампочки, грибы, золото, безделушки.</td>
-            <td>Антлион: 3–5 безделушек или 1–2 охлаждённых термокамня; обновлять каждые 3–5 дней.</td>
-            <td>Дежурный: вентилятор, лёд для тушения, мониторинг базы.</td>
+            <td>Охрана Венди в пещерах.</td>
+            <td>Ледомёты (Auto), эндотермическая яма.</td>
+            <td>Пещеры: ягоды‑лампочки, грибы, золото, безделушки.</td>
+            <td>Антлион: 3–5 безделушек или 1–2 охлаждённых камня.</td>
+            <td>Дежурство: вентилятор, лёд, мониторинг.</td>
           </tr>
           <tr>
             <td class="range"><strong>61–68</strong></td>
             <td>Фарм/охрана: 20–30 золота, 40 камня.</td>
-            <td>Кухня: фрикадельки/тушёное; при арбузах — Melonsicle (арбуз+палка+лёд).</td>
-            <td>Добыча: 40+ лампочек, 20+ грибов, 10+ безделушек.</td>
-            <td>Курьер: на Воби возит еду/инструменты между пещерами и базой.</td>
-            <td>Пожарный пост: лёд под рукой, ремонт молотом.</td>
+            <td>Кухня: фрикадельки/тушёное; при арбузах — Melonsicle.</td>
+            <td>40+ лампочек, 20+ грибов, 10+ безделушек.</td>
+            <td>Курьер: Воби — пещеры↔база.</td>
+            <td>Пожарный пост: лёд, ремонт молотом.</td>
           </tr>
           <tr>
             <td class="range"><strong>69–72</strong></td>
-            <td>Оборона: огненные гончие — в ловушки, добой.</td>
-            <td>Ремонт: восстановление инфраструктуры, уголь/дрова.</td>
-            <td>Глубже: папоротники, лишайник.</td>
-            <td>Дозор: периметр, возгорания/перегрев.</td>
-            <td>Выживание: минимум активности, контроль холодильников.</td>
+            <td>Огненные гончие — в ловушки, добой.</td>
+            <td>Ремонт/уголь/дрова.</td>
+            <td>Папоротники, лишайник.</td>
+            <td>Дозор периметра.</td>
+            <td>Контроль холодильников.</td>
           </tr>
           <tr>
             <td class="range"><strong>73</strong></td>
-            <td>Зачистка: возврат на поверхность, добой огненных гончих.</td>
-            <td>Инвентарь: список восстановления.</td>
-            <td>Вывоз: ресурсы из пещер на базу.</td>
-            <td>Разведка: оценка ущерба.</td>
-            <td>Аналитика: подсчёт еды/ресурсов, подготовка к осени.</td>
+            <td>Добой гончих на поверхности.</td>
+            <td>Инвентарь к восстановлению.</td>
+            <td>Вывоз ресурсов из пещер.</td>
+            <td>Оценка ущерба.</td>
+            <td>Подсчёт еды/ресурсов к осени.</td>
           </tr>
         </tbody>
       </table>
     </div>
   </section>
-
 </main>
 
-<!-- Модалка игрока -->
+<!-- Модалка -->
 <div class="overlay" id="overlay" aria-hidden="true">
   <div class="modal" role="dialog" aria-modal="true" aria-labelledby="playerTitle">
     <header>
       <div id="playerTitle" class="player-title">Игрок</div>
       <button class="close-btn" id="closeModal">Закрыть (Esc)</button>
     </header>
-    <div class="body" id="playerBody">
-      <!-- сюда подставятся задачи -->
-    </div>
+    <div class="body" id="playerBody"></div>
   </div>
 </div>
 
 <script>
-  // ========= ТЕМА =========
+  // Тема
   (function(){
-    const root = document.documentElement;
-    const btn = document.getElementById('themeToggle');
-    const saved = localStorage.getItem('dst-theme');
-    const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-    if(saved){ root.setAttribute('data-theme', saved); }
-    else{ root.setAttribute('data-theme', prefersDark ? 'dark' : 'light'); }
-    btn.addEventListener('click', () => {
-      const cur = root.getAttribute('data-theme');
-      const next = cur === 'dark' ? 'light' : 'dark';
-      root.setAttribute('data-theme', next);
-      localStorage.setItem('dst-theme', next);
+    const root=document.documentElement,btn=document.getElementById('themeToggle');
+    const saved=localStorage.getItem('dst-theme');
+    const prefers=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches;
+    root.setAttribute('data-theme', saved?saved:(prefers?'dark':'light'));
+    btn.addEventListener('click',()=>{
+      const cur=root.getAttribute('data-theme'); const next=cur==='dark'?'light':'dark';
+      root.setAttribute('data-theme',next); localStorage.setItem('dst-theme',next);
     });
   })();
+  // Reveal
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('show');io.unobserve(e.target)}}),{threshold:.15});
+  document.querySelectorAll('.card').forEach(el=>io.observe(el));
 
-  // ========= REVEAL ON SCROLL =========
-  const revealEls = document.querySelectorAll('.reveal, .card');
-  const io = new IntersectionObserver(entries=>{
-    entries.forEach(e=>{
-      if(e.isIntersecting){ e.target.classList.add('show'); io.unobserve(e.target); }
-    });
-  }, {threshold:.15});
-  revealEls.forEach(el=>io.observe(el));
-
-  // ========= ДАННЫЕ ПО ИГРОКАМ =========
-  const players = {
-    wigfrid: {
-      title: 'CAStraydog — Вигфрид',
-      sections: [
-        {season:'winter', title:'Зима 21–23', items:[
-          'Охота: 2 Зимних Коалефанта → 2 хобота, 16 мяса',
-          '1–2 Вольт‑козы → 1 рог',
-          'Всё мясо — на сушилки'
-        ]},
-        {season:'winter', title:'Зима 24–28', items:[
-          'Боевой шлем и копьё Вигфрид',
-          'Заготовить 10+ мяса на верёвках'
-        ]},
-        {season:'winter', title:'Зима 29–31', items:[
-          'Босс: Дирклопс — танк/кайт вдали от базы',
-          'Цель: глаз Дирклопса (Айбрелла)'
-        ]},
-        {season:'winter', title:'Зима 32–35', items:[
-          'Зачистка/дозор против гончих'
-        ]},
-        {season:'spring', title:'Весна 36–40', items:[
-          'Найти гнездо Гуся‑Лося и отметить на карте',
-          'Не атаковать до сборки команды'
-        ]},
-        {season:'spring', title:'Весна 41–49', items:[
-          'Приготовить 15–20 Пирогов для команды',
-          'Чистка мелочи возле поля боя'
-        ]},
-        {season:'spring', title:'Весна 50–55', items:[
-          'Босс: Гусь‑Лось — держать на себе',
-          'Цель: 3–5 перьев'
-        ]},
-        {season:'spring', title:'Весна 56–57', items:[
-          'Крафт: Роскошный вентилятор (из пера)'
-        ]},
-        {season:'summer', title:'Лето 58–60', items:[
-          'Охрана: сопровождение Венди в пещеры'
-        ]},
-        {season:'summer', title:'Лето 61–68', items:[
-          'Фарм/охрана: 20–30 золота, 40 камня'
-        ]},
-        {season:'summer', title:'Лето 69–73', items:[
-          'Оборона от огненных гончих; добой на поверхности'
-        ]},
-      ]
-    },
-    woodie: {
-      title: 'OxesFlame — Вуди',
-      sections: [
-        {season:'winter', title:'Зима 21–23', items:[
-          'Срубить 40+ бревен, 20+ шишек',
-          'Скрафтить 4 Термокамня',
-          'Поставить ещё 2 сушилки; заготовить уголь'
-        ]},
-        {season:'winter', title:'Зима 24–28', items:[
-          'Добавить 2–4 сушилки (итого 6–8)',
-          'Каменные костровые точки у базы и поля боя'
-        ]},
-        {season:'winter', title:'Зима 29–31', items:[
-          'Босс: форма Веролось — прерывает атаки, держит агро'
-        ]},
-        {season:'winter', title:'Зима 32–35', items:[
-          'Подготовить ресурсы на 2 Ледомёта (30 льда, 4 шестерни, 4 эл.комп.)'
-        ]},
-        {season:'spring', title:'Весна 36–40', items:[
-          'Поставить 3 Молниеотвода (огород, пасека, склад)',
-          'Заготовить 40+ бревен'
-        ]},
-        {season:'spring', title:'Весна 41–49', items:[
-          'Собрать 20 Зубных ловушек (зубы+верёвка+ветка)'
-        ]},
-        {season:'spring', title:'Весна 50–55', items:[
-          'Разложить ловушки по периметру поля боя',
-          'Расчистить деревья для видимости'
-        ]},
-        {season:'spring', title:'Весна 56–57', items:[
-          'Зонт/дождевой сет; пополнить дрова/верёвки'
-        ]},
-        {season:'summer', title:'Лето 58–60', items:[
-          'Включить Ледомёты (Auto), поставить эндотермическую яму',
-          'Следить за перегревом у базы'
-        ]},
-        {season:'summer', title:'Лето 61–68', items:[
-          'Кухня: фрикадельки/тушёное; при арбузах — Melonsicle'
-        ]},
-        {season:'summer', title:'Лето 69–73', items:[
-          'Ремонт/восстановление инфраструктуры, уголь/дрова'
-        ]},
-      ]
-    },
-    wendy: {
-      title: 'Dinamiks — Венди',
-      sections: [
-        {season:'winter', title:'Зима 21–23', items:[
-          'С Абигейл добыть 60 льда (2 стака)',
-          'Держать пингвинов под контролем'
-        ]},
-        {season:'winter', title:'Зима 24–28', items:[
-          'Пауки: 3–4 гнезда → 30+ шелка, 20+ мяса монстров'
-        ]},
-        {season:'winter', title:'Зима 29–31', items:[
-          'Босс: Абигейл танкует аддов; удары в окна между атаками'
-        ]},
-        {season:'winter', title:'Зима 32–35', items:[
-          'Пещеры: 20 золота, 40 камня'
-        ]},
-        {season:'spring', title:'Весна 36–40', items:[
-          'Дежурство на базе; лягушачий дождь — зачистка'
-        ]},
-        {season:'spring', title:'Весна 41–49', items:[
-          'Пчёлы: снять агрессивных, собрать мёд (цель 30+)'
-        ]},
-        {season:'spring', title:'Весна 50–55', items:[
-          'Адд‑контроль: Абигейл стирает выводок, добивка'
-        ]},
-        {season:'spring', title:'Весна 56–57', items:[
-          'Собрать 60 травы и 40 веток (топливо/вентилятор)'
-        ]},
-        {season:'summer', title:'Лето 58–60', items:[
-          'Основной фарм в пещерах: лампочки, грибы, золото, безделушки'
-        ]},
-        {season:'summer', title:'Лето 61–68', items:[
-          'Цель: 40+ лампочек, 20+ грибов, 10+ безделушек'
-        ]},
-        {season:'summer', title:'Лето 69–73', items:[
-          'Глубже в пещеры: папоротники, лишайник'
-        ]},
-      ]
-    },
-    walter: {
-      title: 'Shizo — Уолтер',
-      sections: [
-        {season:'winter', title:'Зима 21–23', items:[
-          'Разведка: лагеря моржей, ледники (метки)',
-          'Выбить 1 бивень (Трость), если получится'
-        ]},
-        {season:'winter', title:'Зима 24–28', items:[
-          'Логистика на Воби: возить мясо/ресурсы',
-          'Охота на МакТуска (праща)'
-        ]},
-        {season:'winter', title:'Зима 29–31', items:[
-          'Босс: дистанционный урон пращой, держать рассудок'
-        ]},
-        {season:'winter', title:'Зима 32–35', items:[
-          'Патруль: проверить границы, застрявших боссов'
-        ]},
-        {season:'spring', title:'Весна 36–40', items:[
-          'Дозор: лягушачий дождь — отвод/кайт, сообщения команде'
-        ]},
-        {season:'spring', title:'Весна 41–49', items:[
-          'Болото/пустыня: 20 тростника; попытка добыть шестерни'
-        ]},
-        {season:'spring', title:'Весна 50–55', items:[
-          'Прикрытие: праща по детёнышам/боссу'
-        ]},
-        {season:'spring', title:'Весна 56–57', items:[
-          'Антлион: собрать 10+ безделушек (могилы)'
-        ]},
-        {season:'summer', title:'Лето 58–60', items:[
-          'Посол к Антлиону: 3–5 безделушек или 1–2 охлаждённых камня',
-          'Обновлять каждые 3–5 дней'
-        ]},
-        {season:'summer', title:'Лето 61–68', items:[
-          'Курьер: на Воби возить еду/инструменты из пещер'
-        ]},
-        {season:'summer', title:'Лето 69–73', items:[
-          'Дозор периметра: перегрев/возгорания'
-        ]},
-      ]
-    },
-    wilson: {
-      title: 'Komorka — Уилсон',
-      sections: [
-        {season:'winter', title:'Зима 21–23', items:[
-          'Фарм с фермы пауков: 20 шелка, 10 желез',
-          'Готовка: фрикадельки/тушёное'
-        ]},
-        {season:'winter', title:'Зима 24–28', items:[
-          'Одежда: Уши кролика (ранний спринт), Ушанки',
-          'Готовка: Пироги на команду'
-        ]},
-        {season:'winter', title:'Зима 29–31', items:[
-          'Поддержка: зубные ловушки, хил пирогами и железами'
-        ]},
-        {season:'winter', title:'Зима 32–35', items:[
-          'Крафт: Айбрелла из глаза; еда на весну'
-        ]},
-        {season:'spring', title:'Весна 36–40', items:[
-          'Огород и ульи: посев/удобрение; цель 30+ мёда'
-        ]},
-        {season:'spring', title:'Весна 41–49', items:[
-          'Крафт/установка 2 Ледомётов (OFF до лета)'
-        ]},
-        {season:'spring', title:'Весна 50–55', items:[
-          'Сбор лута, защита построек от выводка'
-        ]},
-        {season:'spring', title:'Весна 56–57', items:[
-          'Склад: разложить еду, пеммикан/тушёное под пещеры'
-        ]},
-        {season:'summer', title:'Лето 58–60', items:[
-          'Дежурство: вентилятор и лёд для тушения, мониторинг'
-        ]},
-        {season:'summer', title:'Лето 61–68', items:[
-          'Пожарный пост: лёд под рукой, ремонт молотом'
-        ]},
-        {season:'summer', title:'Лето 69–73', items:[
-          'Минимум активности; контроль холодильников; аналитика к осени'
-        ]},
-      ]
-    }
+  // Данные игроков (как в старом плане)
+  const players={
+    wigfrid:{title:'CAStraydog — Вигфрид',sections:[
+      {season:'winter',title:'Зима 21–23',items:['Охота: 2 Зимних Коалефанта → 2 хобота, 16 мяса','1–2 Вольт‑козы → 1 рог','Всё на сушилки']},
+      {season:'winter',title:'Зима 24–28',items:['Шлем и копьё Вигфрид','10+ мяса на верёвках']},
+      {season:'winter',title:'Зима 29–31',items:['Дирклопс — танк/кайт','Цель: глаз (Айбрелла)']},
+      {season:'winter',title:'Зима 32–35',items:['Дозор против гончих']},
+      {season:'spring',title:'Весна 36–40',items:['Отметить гнездо Гуся‑Лося','Ждать готовности команды']},
+      {season:'spring',title:'Весна 41–49',items:['Сварить 15–20 Пирогов','Чистка окрестностей поля боя']},
+      {season:'spring',title:'Весна 50–55',items:['Держать босса','3–5 перьев']},
+      {season:'spring',title:'Весна 56–57',items:['Роскошный вентилятор']},
+      {season:'summer',title:'Лето 58–60',items:['Охрана Венди в пещерах']},
+      {season:'summer',title:'Лето 61–68',items:['Фарм/охрана: 20–30 золота, 40 камня']},
+      {season:'summer',title:'Лето 69–73',items:['Оборона от огненных гончих; добой']}
+    ]},
+    woodie:{title:'OxesFlame — Вуди',sections:[
+      {season:'winter',title:'Зима 21–23',items:['40+ бревен, 20+ шишек','4 Термокамня','Ещё 2 сушилки; уголь']},
+      {season:'winter',title:'Зима 24–28',items:['Добавить 2–4 сушилки (6–8 итого)','Каменные костровые точки']},
+      {season:'winter',title:'Зима 29–31',items:['Веролось — прерывает атаки, держит агро']},
+      {season:'winter',title:'Зима 32–35',items:['Ресурсы под 2 Ледомёта (30 льда, 4 шестерни, 4 эл.комп.)']},
+      {season:'spring',title:'Весна 36–40',items:['3 Молниеотвода','40+ бревен']},
+      {season:'spring',title:'Весна 41–49',items:['20 зубных ловушек']},
+      {season:'spring',title:'Весна 50–55',items:['Разложить ловушки, расчистить деревья']},
+      {season:'spring',title:'Весна 56–57',items:['Зонт/сет, пополнить дрова/верёвки']},
+      {season:'summer',title:'Лето 58–60',items:['Ледомёты Auto, эндотермическая яма','Контроль перегрева']},
+      {season:'summer',title:'Лето 61–68',items:['Кухня: фрикадельки/тушёное; Melonsicle']},
+      {season:'summer',title:'Лето 69–73',items:['Ремонт/уголь/дрова']}
+    ]},
+    wendy:{title:'Dinamiks — Венди',sections:[
+      {season:'winter',title:'Зима 21–23',items:['60 льда с Абигейл','Держать пингвинов']},
+      {season:'winter',title:'Зима 24–28',items:['3–4 гнезда: 30+ шелка, 20+ мяса монстров']},
+      {season:'winter',title:'Зима 29–31',items:['Абигейл танкует аддов; бить в окна']},
+      {season:'winter',title:'Зима 32–35',items:['Пещеры: 20 золота, 40 камня']},
+      {season:'spring',title:'Весна 36–40',items:['Дежурство; лягушачий дождь — зачистка']},
+      {season:'spring',title:'Весна 41–49',items:['Пчёлы: снять агрессивных; собрать мёд (30+)']},
+      {season:'spring',title:'Весна 50–55',items:['Адды: Абигейл стирает выводок, добивка']},
+      {season:'spring',title:'Весна 56–57',items:['60 травы, 40 веток']},
+      {season:'summer',title:'Лето 58–60',items:['Пещеры: лампочки, грибы, золото, безделушки']},
+      {season:'summer',title:'Лето 61–68',items:['40+ лампочек, 20+ грибов, 10+ безделушек']},
+      {season:'summer',title:'Лето 69–73',items:['Папоротники, лишайник']}
+    ]},
+    walter:{title:'Shizo — Уолтер',sections:[
+      {season:'winter',title:'Зима 21–23',items:['Разведка: лагеря моржей, ледники','Попробовать бивень (Трость)']},
+      {season:'winter',title:'Зима 24–28',items:['Логистика на Воби; охота на МакТуска (праща)']},
+      {season:'winter',title:'Зима 29–31',items:['Праща: дистанция, рассудок']},
+      {season:'winter',title:'Зима 32–35',items:['Патруль карты, застрявшие боссы']},
+      {season:'spring',title:'Весна 36–40',items:['Дозор: лягушачий дождь — отвод/кайт']},
+      {season:'spring',title:'Весна 41–49',items:['Болото/пустыня: 20 тростника; шестерни']},
+      {season:'spring',title:'Весна 50–55',items:['Праща по детёнышам/боссу']},
+      {season:'spring',title:'Весна 56–57',items:['Антлион: 10+ безделушек (могилы)']},
+      {season:'summer',title:'Лето 58–60',items:['Посол к Антлиону: 3–5 безделушек/охлаждённые камни']},
+      {season:'summer',title:'Лето 61–68',items:['Курьер: Воби — пещеры↔база']},
+      {season:'summer',title:'Лето 69–73',items:['Дозор периметра']}
+    ]},
+    wilson:{title:'Komorka — Уилсон',sections:[
+      {season:'winter',title:'Зима 21–23',items:['Пауки: 20 шелка, 10 желез','Готовка: фрикадельки/тушёное']},
+      {season:'winter',title:'Зима 24–28',items:['Уши кролика, Ушанки','Пироги на команду']},
+      {season:'winter',title:'Зима 29–31',items:['Поддержка: ловушки, хил пирогами/железами']},
+      {season:'winter',title:'Зима 32–35',items:['Айбрелла; еда на весну']},
+      {season:'spring',title:'Весна 36–40',items:['Огород/ульи; цель 30+ мёда']},
+      {season:'spring',title:'Весна 41–49',items:['Крафт/установка 2 Ледомётов (OFF)']},
+      {season:'spring',title:'Весна 50–55',items:['Сбор лута; защита построек']},
+      {season:'spring',title:'Весна 56–57',items:['Пеммикан/тушёное для пещер']},
+      {season:'summer',title:'Лето 58–60',items:['Дежурство: вентилятор и лёд']},
+      {season:'summer',title:'Лето 61–68',items:['Пожарный пост: лёд, ремонт']},
+      {season:'summer',title:'Лето 69–73',items:['Контроль холодильников; аналитика к осени']}
+    ]}
   };
 
-  // ========= МОДАЛКА =========
-  const overlay = document.getElementById('overlay');
-  const closeBtn = document.getElementById('closeModal');
-  const bodyBox = document.getElementById('playerBody');
-  const titleBox = document.getElementById('playerTitle');
+  // Модалка
+  const overlay=document.getElementById('overlay');
+  const closeBtn=document.getElementById('closeModal');
+  const bodyBox=document.getElementById('playerBody');
+  const titleBox=document.getElementById('playerTitle');
 
   function openPlayer(key){
-    const p = players[key];
-    if(!p) return;
-    titleBox.textContent = p.title;
-    bodyBox.innerHTML = p.sections.map(sec => `
+    const p=players[key]; if(!p)return;
+    titleBox.textContent=p.title;
+    bodyBox.innerHTML=p.sections.map(sec=>`
       <div class="task-block ${sec.season}">
         <div class="range"><strong>${sec.title}</strong></div>
-        <ul class="tasks">
-          ${sec.items.map(i=>`<li>• ${i}</li>`).join('')}
-        </ul>
+        <ul class="tasks">${sec.items.map(i=>`<li>• ${i}</li>`).join('')}</ul>
       </div>
     `).join('');
-    overlay.classList.add('show');
-    overlay.setAttribute('aria-hidden', 'false');
-    // hash для прямой ссылки
+    overlay.classList.add('show'); overlay.setAttribute('aria-hidden','false');
+    document.body.classList.add('modal-open');
     history.replaceState(null,'',`#p=${key}`);
   }
   function closeModal(){
-    overlay.classList.remove('show');
-    overlay.setAttribute('aria-hidden', 'true');
-    // не оставляем хэш открытым
-    if(location.hash.startsWith('#p=')){
-      history.replaceState(null,'',location.pathname + location.search);
-    }
+    overlay.classList.remove('show'); overlay.setAttribute('aria-hidden','true');
+    document.body.classList.remove('modal-open');
+    if(location.hash.startsWith('#p=')) history.replaceState(null,'',location.pathname+location.search);
   }
-  document.querySelectorAll('.player').forEach(btn=>{
-    btn.addEventListener('click', ()=> openPlayer(btn.dataset.player));
-  });
-  overlay.addEventListener('click', (e)=>{ if(e.target === overlay) closeModal(); });
-  closeBtn.addEventListener('click', closeModal);
-  window.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') closeModal(); });
-
-  // Открытие по #p=...
-  (function(){
-    const hash = new URLSearchParams(location.hash.replace('#','')).get('p');
-    if(hash && players[hash]) openPlayer(hash);
-  })();
+  document.querySelectorAll('.player').forEach(btn=>btn.addEventListener('click',()=>openPlayer(btn.dataset.player)));
+  overlay.addEventListener('click',e=>{if(e.target===overlay)closeModal()});
+  closeBtn.addEventListener('click',closeModal);
+  window.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
+  (function(){ const hash=new URLSearchParams(location.hash.replace('#','')).get('p'); if(hash&&players[hash]) openPlayer(hash);})();
 </script>
 </body>
 </html>
